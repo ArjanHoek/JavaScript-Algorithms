@@ -44,7 +44,7 @@ const fib = (num) => {
 
 // CHALLENGES (hard)
 
-// 6
+// 6: Reverse a given string
 const reverse = (str) => {
     const helper = (str, res) =>
         !str.length ? res : helper(str.slice(0, -1), res + str.slice(-1));
@@ -52,4 +52,39 @@ const reverse = (str) => {
     return helper(str, "");
 };
 
-console.log(reverse("ReversedWord"));
+// 7: Check if string is a palindrome
+const isPalindrome = (str) => {
+    if (str.length <= 1) return true;
+    if (str[0] !== str[str.length - 1]) return false;
+
+    return isPalindrome(str.slice(1, -1));
+};
+
+// 8: Some recursive
+const someRecursive = (arr, cb) => {
+    const helper = (arr) => {
+        if (!arr.length) return false;
+        return cb(arr[0]) ? true : helper(arr.slice(1));
+    };
+
+    return helper(arr);
+};
+
+// 9: Flatten an array
+const flatten = (arr) => {
+    const helper = (arr, res) => {
+        const n = arr[0];
+
+        if (!n) return res;
+
+        if (Array.isArray(n)) {
+            helper(n, res);
+        } else {
+            res.push(n);
+        }
+
+        return helper(arr.slice(1), res);
+    };
+
+    return helper(arr, []);
+};
